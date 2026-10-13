@@ -1,0 +1,24 @@
+name: Backdate Year 5
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backdate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure git
+        run: |
+          git config user.name "PicasoTheDeal"
+          git config user.email "PicasoTheDeal@users.noreply.github.com"
+
+      - name: Run backdate script
+        run: python year5.py
+
+      - name: Push commits
+        run: git push
